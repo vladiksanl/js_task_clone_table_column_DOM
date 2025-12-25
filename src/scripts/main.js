@@ -1,15 +1,12 @@
 'use strict';
 
 // write your code here
-
-const secondTh =
-  document.querySelector('tr:has(th)').firstElementChild.nextElementSibling;
-
 const thsOftrs = document.querySelectorAll('tr:has(th)');
 const arrayOfThsOfTrs = [...thsOftrs];
 
 for (const item of arrayOfThsOfTrs) {
-  item.lastElementChild.before(secondTh.cloneNode(true));
+  item.lastElementChild.before(
+    item.firstElementChild.nextElementSibling.cloneNode(true));
 }
 
 const newPrevLastTds = document.querySelectorAll('tr:has(td)');
