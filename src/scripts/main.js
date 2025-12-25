@@ -2,19 +2,24 @@
 
 // write your code here
 
-const secondTh = document.querySelector('tr th:nth-child(2)');
+const secondTh =
+  document.querySelector('tr:has(th)').firstElementChild.nextElementSibling;
 
-const prevLastThs = document.querySelectorAll('tr th:nth-child(4)');
+const thsOftrs = document.querySelectorAll('tr:has(th)');
+const arrayOfThsOfTrs = [...thsOftrs];
 
-prevLastThs[0].after(secondTh.cloneNode(true));
-prevLastThs[1].after(secondTh.cloneNode(true));
+for (const item of arrayOfThsOfTrs) {
+  item.lastElementChild.before(secondTh.cloneNode(true));
+}
 
-const newPrevLastTds = document.querySelectorAll('tr td:nth-child(4)');
-const secondTds = document.querySelectorAll('tr td:nth-child(2)');
+const newPrevLastTds = document.querySelectorAll('tr:has(td)');
 
-const arrayOfsecondTds = [...secondTds];
 const arrayOfnewPrevLastTds = [...newPrevLastTds];
 
 for (let i = 0; i < arrayOfnewPrevLastTds.length; i++) {
-  arrayOfnewPrevLastTds[i].after(arrayOfsecondTds[i].cloneNode(true));
+  arrayOfnewPrevLastTds[i].lastElementChild.before(
+    arrayOfnewPrevLastTds[i].firstElementChild.nextElementSibling.cloneNode(
+      true,
+    ),
+  );
 }
